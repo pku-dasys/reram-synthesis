@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 
-project(hybrid-synthesis)
+project(reskel)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
@@ -14,7 +14,10 @@ include_directories(
   "${CMAKE_CURRENT_SOURCE_DIR}/include"
   )
 
-add_library(reskel STATIC ${SOURCES})
+add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
-add_executable(hybrid-synthesis "${CMAKE_CURRENT_SOURCE_DIR}/source/main.cpp")
-target_link_libraries(hybrid-synthesis reskel)
+add_executable(${PROJECT_NAME}.demo "${CMAKE_CURRENT_SOURCE_DIR}/source/main.cpp")
+target_link_libraries(${PROJECT_NAME}.demo ${PROJECT_NAME})
+
+enable_testing()
+add_subdirectory(unittest)
