@@ -91,6 +91,9 @@ void Pipe::compare() {}
 void Pipe::allocate_bounding_box_analog() {}
 
 void Pipe::simulate() {
+  for (auto &c : children) {
+    c->simulate();
+  }
   /*
    * TO DO: output statistics
    */
