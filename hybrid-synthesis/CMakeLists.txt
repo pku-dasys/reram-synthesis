@@ -8,16 +8,14 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 file(GLOB SOURCES
   "${CMAKE_CURRENT_SOURCE_DIR}/source/*.cpp"
   )
-list(FILTER SOURCES EXCLUDE REGEX ".*main.cpp")
 
-include_directories(
-  "${CMAKE_CURRENT_SOURCE_DIR}/include"
-  )
+include_directories("${CMAKE_CURRENT_SOURCE_DIR}/include")
 
 add_library(${PROJECT_NAME} STATIC ${SOURCES})
 
-add_executable(${PROJECT_NAME}.demo "${CMAKE_CURRENT_SOURCE_DIR}/source/main.cpp")
-target_link_libraries(${PROJECT_NAME}.demo ${PROJECT_NAME})
+install(TARGETS ${PROJECT_NAME})
+install(DIRECTORY include/ DESTINATION include
+  FILES_MATCHING PATTERN "*.h")
 
 enable_testing()
 add_subdirectory(unittest)
