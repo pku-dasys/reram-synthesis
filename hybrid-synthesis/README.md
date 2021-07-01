@@ -1,4 +1,4 @@
-#ReSkel: Skeleton for Processing-in-ReRAM Synthesis
+# ReSkel: Skeleton for Processing-in-ReRAM Synthesis
 Reskel use the skeleton to represent both the computational and storage aspectives of a processing-in-ReRAM application.
 
 Examples of ReSkel applications are demontrated in [unittest/](unittest/).
