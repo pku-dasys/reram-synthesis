@@ -64,8 +64,8 @@ void Reduce::allocate_bounding_box_analog() {}
 
 void Reduce::simulate() {
   // functional simulation
-  for (Skeleton *c : children) {
-    c->simulate();
+  for (Skeleton *child : children) {
+    child->simulate();
   }
   /*
    * TO DO: performance simulation

@@ -117,7 +117,7 @@ void Map::allocate_bounding_box_analog() {
    * reduce、pipe与此相似
    */
   vector<Box *> analog_boxes;
-  if (hybrid & 2 != 2) {  // 不能用模拟模式计算
+  if (hybrid & ANALOG != ANALOG) {  // 不能用模拟模式计算
     return;
   }
   for (Skeleton *child : children) {
@@ -177,8 +177,8 @@ void Map::allocate_bounding_box_analog() {
 
 void Map::simulate() {
   // functional simulation
-  for (Skeleton *c : children) {
-    c->simulate();
+  for (Skeleton *child : children) {
+    child->simulate();
   }
   /*
    * TO DO: performance simulation

@@ -36,7 +36,7 @@ enum PrimitiveType {
 };
 
 enum XbarType {
-  UNSPECIFIED = 0,
+  UNSPECIFIED = 0x0,
   DIGITAL = 0x1,
   ANALOG = 0x2,
   HYBRID = DIGITAL | ANALOG

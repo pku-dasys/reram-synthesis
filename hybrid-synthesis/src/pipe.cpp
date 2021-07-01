@@ -92,8 +92,8 @@ void Pipe::allocate_bounding_box_analog() {}
 
 void Pipe::simulate() {
   // functional simulation
-  for (Skeleton *c : children) {
-    c->simulate();
+  for (Skeleton *child : children) {
+    child->simulate();
   }
   /*
    * TO DO: performance simulation
