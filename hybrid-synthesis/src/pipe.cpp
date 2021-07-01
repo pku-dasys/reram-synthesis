@@ -28,7 +28,7 @@ vector<Data *> &Pipe::append(Skeleton *s) {
 
 int Pipe::partition() {
   for (Skeleton *child : children) {
-    hybrid |= child->partition();
+    hybrid = (XbarType)(hybrid | child->partition());
   }
   return hybrid;
 }
@@ -91,10 +91,11 @@ void Pipe::compare() {}
 void Pipe::allocate_bounding_box_analog() {}
 
 void Pipe::simulate() {
-  for (auto &c : children) {
+  // functional simulation
+  for (Skeleton *c : children) {
     c->simulate();
   }
   /*
-   * TO DO: output statistics
+   * TO DO: performance simulation
    */
 }

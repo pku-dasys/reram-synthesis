@@ -28,14 +28,14 @@ int Map::partition() {
   for (Skeleton *child : children) {
     if (child->st == PRIMITIVE) {
       if (((Primitive *)child)->pt == ADD || ((Primitive *)child)->pt == MUL) {
-        child->hybrid = 2;
+        child->hybrid = ANALOG;
       } else {
-        child->hybrid = 1;
+        child->hybrid = DIGITAL;
       }
     } else {
       child->partition();
     }
-    hybrid |= child->hybrid;
+    hybrid = (XbarType)(hybrid | child->hybrid);
   }
   return hybrid;
 }
@@ -176,10 +176,11 @@ void Map::allocate_bounding_box_analog() {
 }
 
 void Map::simulate() {
-  for (auto &c : children) {
+  // functional simulation
+  for (Skeleton *c : children) {
     c->simulate();
   }
   /*
-   * TO DO: output statistics
+   * TO DO: performance simulation
    */
 }

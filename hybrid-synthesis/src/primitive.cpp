@@ -42,7 +42,7 @@ Primitive::~Primitive() {
 }
 
 int Primitive::partition() {
-  hybrid = 1;
+  hybrid = DIGITAL;
   return hybrid;
 }
 
@@ -95,6 +95,7 @@ void Primitive::compare() {}
 void Primitive::allocate_bounding_box_analog() {}
 
 void Primitive::simulate() {
+  // functional simulation
   switch (pt) {
     case NOT:
       outputs.front()->value = !inputs.front()->value;
@@ -102,7 +103,7 @@ void Primitive::simulate() {
 
     case ADD: {
       int sum = 0;
-      for (const auto &in : inputs) {
+      for (Data *in : inputs) {
         sum += in->value;
       }
       outputs.front()->value = sum;
@@ -110,7 +111,7 @@ void Primitive::simulate() {
 
     case MUL: {
       int prod = 1;
-      for (const auto &in : inputs) {
+      for (Data *in : inputs) {
         prod *= in->value;
       }
       outputs.front()->value = prod;
@@ -118,7 +119,7 @@ void Primitive::simulate() {
 
     case AND: {
       unsigned mask = ~0;
-      for (const auto &in : inputs) {
+      for (Data *in : inputs) {
         mask &= in->value;
       }
       outputs.front()->value = mask;
@@ -126,7 +127,7 @@ void Primitive::simulate() {
 
     case XOR: {
       unsigned mask = ~0;
-      for (const auto &in : inputs) {
+      for (Data *in : inputs) {
         mask ^= in->value;
       }
       outputs.front()->value = mask;
@@ -136,6 +137,6 @@ void Primitive::simulate() {
       break;
   }
   /*
-   * TO DO: output statistics
+   * TO DO: performance simulation
    */
 }

@@ -24,9 +24,9 @@ Reduce::~Reduce() {}
 int Reduce::partition() {
   if (children[0]->st == PRIMITIVE) {
     if (((Primitive *)children[0])->pt == ADD) {
-      hybrid = 2;
+      hybrid = ANALOG;
     } else {
-      hybrid = 1;
+      hybrid = DIGITAL;
     }
   } else {
     children[0]->partition();
@@ -63,10 +63,11 @@ void Reduce::compare() {}
 void Reduce::allocate_bounding_box_analog() {}
 
 void Reduce::simulate() {
-  for (auto &c : children) {
+  // functional simulation
+  for (Skeleton *c : children) {
     c->simulate();
   }
   /*
-   * TO DO: output statistics
+   * TO DO: performance simulation
    */
 }

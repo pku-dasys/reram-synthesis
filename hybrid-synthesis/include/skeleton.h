@@ -35,6 +35,13 @@ enum PrimitiveType {
   READ
 };
 
+enum XbarType {
+  UNSPECIFIED = 0,
+  DIGITAL = 0x1,
+  ANALOG = 0x2,
+  HYBRID = DIGITAL | ANALOG
+};
+
 struct Skeleton {
   /*
    * input information
@@ -49,7 +56,7 @@ struct Skeleton {
   /*
    * computed in partition()
    */
-  int hybrid;  // 0: unidentified, 1: digital, 2: analog, 3: digital + analog
+  XbarType hybrid;
 
   /*
    * computed in reduce_stateful_logic()
