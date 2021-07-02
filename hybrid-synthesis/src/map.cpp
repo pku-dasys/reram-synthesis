@@ -121,9 +121,10 @@ void Map::allocate_bounding_box_analog() {
     return;
   }
   for (Skeleton *child : children) {
-    if (child->st != PRIMITIVE) {  // 只检查skeleton+primitive的组合
+    if (child->st != PRIMITIVE) {
       child->allocate_bounding_box_analog();
     } else {
+      // 只检查skeleton+primitive的组合
       /*
        * 枚举论文中五种可能的skeleton+primitive组合，得到初始bounding box大小
        */
@@ -171,7 +172,7 @@ void Map::allocate_bounding_box_analog() {
   }
   /*
    * 根据优化目标选择串行映射或并行映射，将analog_boxes里较小的bounding
-   * box合并在一个阵列中，这里未给出实现
+   * box合并在一个阵列中，这里未给出实现。（见王丰博士论文图5.10。）
    */
 }
 

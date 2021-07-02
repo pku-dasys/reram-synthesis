@@ -88,7 +88,29 @@ void Pipe::reduce_mac() {}
 
 void Pipe::compare() {}
 
-void Pipe::allocate_bounding_box_analog() {}
+void Pipe::allocate_bounding_box_analog() {
+  if (hybrid & ANALOG != ANALOG) {
+    return;  // analog mode unavailable
+  }
+
+  vector<Box *> analog_boxes;
+
+  for (Skeleton *child : children) {
+    if (child->st != PRIMITIVE) {
+      child->allocate_bounding_box_analog();
+    }
+  }
+
+  /*
+   * 操作融合：检查pipe(mul, add)和pipe(add, add)，将其合并为一个bounding
+   * box，这里未给出代码
+   */
+
+  /*
+   * 根据优化目标选择串行映射或并行映射，将analog_boxes里较小的bounding
+   * box合并在一个阵列中，这里未给出实现
+   */
+}
 
 void Pipe::simulate() {
   // functional simulation
